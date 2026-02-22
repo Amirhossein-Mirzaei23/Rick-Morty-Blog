@@ -2,6 +2,7 @@
 import { useCharacterEpisodesApi } from '~/composables/api/useCharacterEpisodesApi'
 import { useCharacterLocationApi } from '~/composables/api/useCharactorLocationApi'
 import { useCharacterJsonLd } from '~/composables/useCharacterJsonLd'
+import { useCharacteApi } from '~/composables/api/useCharacteApi'
 
 definePageMeta({
   layout: 'default',
@@ -19,7 +20,7 @@ const characterId = computed(() => {
   const { id } = route.params as { id?: string | string[] }
   return Array.isArray(id) ? (id[0] ?? '') : (id ?? '')
 })
-const { character } = await useCharacterDetail(characterId as any)
+const { character } = await useCharacteApi(characterId)
 
 const episodeIds = computed(
   () =>
