@@ -78,6 +78,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'netlify',
     compressPublicAssets: true,
     typescript: {
       strict: true,
