@@ -15,13 +15,16 @@ export default defineNuxtConfig({
       },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Nuxt 4 App',
-      titleTemplate: '%s | Nuxt 4 App',
+      title: 'Rick and Morty blog',
       meta: [
-        { name: 'description', content: 'Production-ready Nuxt 4 SSR application.' },
+        {
+          name: 'description',
+          content:
+            'Rick and Morty blog - Explore characters, episodes, and locations from the Rick and Morty universe.',
+        },
         { name: 'format-detection', content: 'telephone=no' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:site_name', content: 'Nuxt 4 App' },
+        { property: 'og:site_name', content: 'Rick and Morty blog' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
