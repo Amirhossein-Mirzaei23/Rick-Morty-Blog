@@ -34,21 +34,21 @@ const { location, locationStatus } = useCharacterLocationApi(locationId)
 const { jsonLd, canonicalUrl } = useCharacterJsonLd(character, characterId.value)
 
 useSeoMeta({
-  title: () => (character.value ? `${character.value.name} - Rick and Morty Character` : 'Character'),
+  title: () => (character.value ? `${character.value.name} - Rick and Morty blog` : 'Character'),
   description: () =>
     character.value
       ? `${character.value.name} is a ${character.value.status} ${character.value.species} from Rick and Morty. Origin: ${character.value.origin.name}. Appears in ${character.value.episode.length} episodes.`
       : '',
-  ogTitle: () => (character.value ? `${character.value.name} - Rick and Morty Character` : ''),
+  ogTitle: () => (character.value ? `${character.value.name} - Rick and Morty blog` : ''),
   ogDescription: () =>
     character.value
       ? `${character.value.name} is a ${character.value.status} ${character.value.species} from Rick and Morty. Origin: ${character.value.origin.name}. Appears in ${character.value.episode.length} episodes.`
       : '',
   ogImage: () => character.value?.image,
-  ogImageAlt: () => (character.value ? `${character.value.name} - Rick and Morty character image` : ''),
+  ogImageAlt: () => (character.value ? `${character.value.name} - Rick and Morty blog image` : ''),
   ogType: 'profile',
   twitterCard: 'summary_large_image',
-  twitterTitle: () => (character.value ? `${character.value.name} - Rick and Morty Character` : ''),
+  twitterTitle: () => (character.value ? `${character.value.name} - Rick and Morty blog` : ''),
   twitterDescription: () =>
     character.value
       ? `${character.value.name}: ${character.value.status} ${character.value.species}. Origin: ${character.value.origin.name}.`
