@@ -80,6 +80,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
     compressPublicAssets: true,
+    prerender: {
+      autoSubfolderIndex: false,
+    },
     typescript: {
       strict: true,
       tsConfig: {
