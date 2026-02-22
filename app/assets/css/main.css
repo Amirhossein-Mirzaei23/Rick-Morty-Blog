@@ -1,22 +1,40 @@
 @import 'tailwindcss';
 
-@theme {
-  --color-primary-50: oklch(0.97 0.03 260);
-  --color-primary-100: oklch(0.93 0.06 260);
-  --color-primary-200: oklch(0.87 0.1 260);
-  --color-primary-300: oklch(0.79 0.15 260);
-  --color-primary-400: oklch(0.69 0.2 260);
-  --color-primary-500: oklch(0.58 0.25 260);
-  --color-primary-600: oklch(0.49 0.25 260);
-  --color-primary-700: oklch(0.41 0.22 260);
-  --color-primary-800: oklch(0.34 0.18 260);
-  --color-primary-900: oklch(0.28 0.14 260);
+/* Local Font Definitions */
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
 
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --color-accent: #b2df28;
+  --color-danger: #ff1e00;
+  --color-success: #00ff80;
+  --color-info: #0ad7f1;
+  --color-base: #2c2e30;
+  --color-base-dark: #0e0e0e;
+  --color-neutral-200: #e5e6e6;
+  --color-neutral-400: #989a9c;
+  --color-neutral-500: #989898;
+
+  --font-sans: 'Rubik', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
+
+  --text-md: 1rem; /* 16px */
 }
 
 @layer base {
@@ -27,16 +45,30 @@
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+    /* @apply ring-cyan-800 ring-2 ring-offset-2 outline-none; */
   }
 
   body {
-    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    @apply bg-white text-gray-900 dark:bg-[#2c2e30] dark:text-gray-100;
   }
 }
 
 @layer components {
   .container-fluid {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full;
   }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-skeleton {
+  background: linear-gradient(90deg, #2c2e30 25%, #3a3d40 37%, #2c2e30 63%);
+  background-size: 200% 100%;
+  animation: shimmer 2.8s ease-in-out infinite;
 }
