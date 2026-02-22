@@ -54,7 +54,7 @@ useHeadSafe({
         <ul class="grid grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:grid-cols-4 lg:px-39 lg:py-16">
           <template v-if="isLoading">
             <li v-for="n in 10" :key="n">
-              <CardSkeletonLoader :show-image-loader="true" card-class="bg-base" loader-class="bg-base-dark" />
+              <UiCardSkeletonLoader :show-image-loader="true" card-class="bg-base" loader-class="bg-base-dark" />
             </li>
           </template>
           <template v-else>

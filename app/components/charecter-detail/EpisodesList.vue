@@ -27,7 +27,7 @@ const props = defineProps<Props>()
       </template>
       <template v-else>
         <li v-for="n in 4" :key="n">
-          <CardSkeletonLoader :show-image-loader="false" card-class="bg-[#0AD7F10A]" loader-class="bg-base" />
+          <UiCardSkeletonLoader :show-image-loader="false" card-class="bg-[#0AD7F10A]" loader-class="bg-base" />
         </li>
       </template>
     </ul>

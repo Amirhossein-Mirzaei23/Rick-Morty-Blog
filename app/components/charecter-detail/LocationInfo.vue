@@ -16,7 +16,7 @@ const props = defineProps<Props>()
   <div class="flex flex-col gap-5">
     <SectionHeader :image="locationsIcon" title="Locations" alt="locations" />
     <div v-if="loading" class="grid grid-cols-1 gap-4 lg:grid-cols-4">
-      <CardSkeletonLoader :show-image-loader="false" card-class="bg-[#0AD7F10A]" loader-class="bg-base" />
+      <UiCardSkeletonLoader :show-image-loader="false" card-class="bg-[#0AD7F10A]" loader-class="bg-base" />
     </div>
     <div v-else-if="!props.location">
       <p class="text-info">No location available.</p>
