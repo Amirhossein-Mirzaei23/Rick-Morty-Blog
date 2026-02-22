@@ -10,6 +10,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: 'Nuxt 4 App',
@@ -20,7 +23,15 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'Nuxt 4 App' },
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'preload',
+          as: 'font',
+          type: 'font/ttf',
+          href: '/fonts/Rubik-VariableFont_wght.ttf',
+        },
+      ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
@@ -48,13 +59,13 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@nuxt/eslint'],
 
   imports: {
-    dirs: ['composables/**', 'stores/**', 'utils/**'],
+    dirs: ['composables/**'],
+    // , 'stores/**', 'utils/**'
   },
 
   components: [
     { path: '~/components/base', prefix: 'Base', pathPrefix: false },
     { path: '~/components/ui', prefix: 'Ui', pathPrefix: false },
-    { path: '~/components/layout', prefix: '', pathPrefix: false },
     { path: '~/components', pathPrefix: false },
   ],
 
@@ -100,7 +111,7 @@ export default defineNuxtConfig({
 
   eslint: {
     config: {
-      standalone: false,
+      standalone: true,
     },
   },
 
