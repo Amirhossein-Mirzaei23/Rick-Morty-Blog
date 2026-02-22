@@ -76,7 +76,7 @@ useHead({
 
 <template>
   <div v-if="character" class="flex flex-col gap-8">
-    <CharacterHeader :character="character" />
+    <CharacterPreview :character="character" />
     <div class="flex flex-col gap-8 px-4 py-8 lg:gap-16 lg:px-39 lg:py-16">
       <Suspense>
         <template #default>
