@@ -46,8 +46,6 @@ async function fetchAllCharacters(): Promise<Character[]> {
 }
 export default defineEventHandler(async () => {
   const characters = await fetchAllCharacters()
-  console.log('Fetched characters for sitemap:', characters.length)
-
   return characters.map((char) => ({
     loc: `/character/${slugify(char.name)}/${char.id}`,
     lastmod: new Date().toISOString(),

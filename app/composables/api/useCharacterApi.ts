@@ -16,11 +16,11 @@ export async function useCharacterApi(characterId: Ref<string> | ComputedRef<str
   )
 
   if (characterError.value) {
-    if (characterError.value.message.includes('no response')) {
-      characterError.value.status = 429
-    }
+    const statusCode = characterError.value.message.includes('no response')
+      ? 429
+      : (characterError.value.status ?? characterError.value.statusCode ?? 500)
     // Use centralized error handler with fatal option
-    handleApiError(characterError.value, { fatal: true })
+    handleApiError({ ...characterError.value, status: statusCode }, { fatal: true })
   }
 
   return {

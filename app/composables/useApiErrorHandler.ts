@@ -21,8 +21,6 @@ export function useApiErrorHandler() {
     } = {},
   ) {
     const statusCode = error?.status ?? error?.statusCode ?? 500
-    console.log('stats22', statusCode)
-
     if (options.fatal) {
       throw createError({
         statusCode,

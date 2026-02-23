@@ -5,10 +5,10 @@ interface UseCharacterSearchOptions {
   page: Ref<number> | ComputedRef<number>
 }
 
-export function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
+export async function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
   const config = useRuntimeConfig()
   const { handleApiError } = useApiErrorHandler()
-  
+
   const apiUrl = computed(() => {
     const q = name.value.trim()
     if (!q) return null
@@ -16,7 +16,7 @@ export function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
     return `${config.public.apiBase}/character/?${params.toString()}`
   })
 
-  const { data, status, error, refresh } = useAsyncData<characterSearchResponse | null>(
+  const { data, status, error, refresh } = await useAsyncData<characterSearchResponse | null>(
     'character-search',
     async () => {
       const url = apiUrl.value
