@@ -1,3 +1,2 @@
 User-Agent: *
-Crawl-delay: 1
 Sitemap: https://incomparable-bombolone-428fb9.netlify.app/sitemap.xml

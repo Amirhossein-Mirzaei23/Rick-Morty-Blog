@@ -19,15 +19,22 @@ const hasPrev = computed(() => currentPage > 1)
 const hasNext = computed(() => currentPage < totalPages)
 const visiblePages = computed<(number | '...')[]>(() => {
   if (totalPages <= 1) return []
-  const delta = 4
-  const left = Math.max(2, currentPage - delta)
-  const right = Math.min(totalPages - 1, currentPage + delta)
+
+  // If total pages fit within the 5-slot window, show all without ellipsis
+  if (totalPages <= 5) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1)
+  }
+
+  // Always show: 1, [mid-1, mid, mid+1], totalPages = exactly 5 numbers
+  // Clamp the centre so the 3-page window never strays outside [2, totalPages-1]
+  const mid = Math.min(Math.max(currentPage, 3), totalPages - 2)
   const pages: (number | '...')[] = [1]
 
-  if (left > 2) pages.push('...')
-  for (let i = left; i <= right; i++) pages.push(i)
-  if (right < totalPages - 1) pages.push('...')
-  if (currentPage > 2) pages.push(totalPages)
+  if (mid - 1 > 2) pages.push('...')
+  pages.push(mid - 1, mid, mid + 1)
+  if (mid + 1 < totalPages - 1) pages.push('...')
+  pages.push(totalPages)
+
   return pages
 })
 
@@ -46,7 +53,7 @@ function go(page: number) {
       aria-label="First page"
       @click="go(1)"
     >
-      <img :src="doublePreviousIcon" :width="24" :height="24" alt="first page icon" />
+      <img :src="doublePreviousIcon" :width="24" :height="24" alt="" aria-hidden="true" />
     </button>
     <button
       type="button"
@@ -55,7 +62,7 @@ function go(page: number) {
       aria-label="Previous page"
       @click="go(currentPage - 1)"
     >
-      <img :src="previousIcon" :width="24" :height="24" class="text-white" alt="previous icon" />
+      <img :src="previousIcon" :width="24" :height="24" class="text-white" alt="" aria-hidden="true" />
     </button>
     <div v-for="(p, i) in visiblePages" :key="i" class="">
       <span v-if="p === '...'" class="px-1 text-neutral-400" aria-hidden="true">…</span>
@@ -81,7 +88,7 @@ function go(page: number) {
       aria-label="Next page"
       @click="go(currentPage + 1)"
     >
-      <img :src="nextIcon" :width="24" :height="24" alt="next icon" />
+      <img :src="nextIcon" :width="24" :height="24" alt="" aria-hidden="true" />
     </button>
     <button
       type="button"
@@ -90,7 +97,7 @@ function go(page: number) {
       aria-label="Last page"
       @click="go(totalPages)"
     >
-      <img :src="doubleNextIcon" :width="24" :height="24" alt="last page icon" />
+      <img :src="doubleNextIcon" :width="24" :height="24" alt="" aria-hidden="true" />
     </button>
   </nav>
 </template>
