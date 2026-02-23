@@ -1,2 +1,2 @@
 User-Agent: *
-Disallow:
+Sitemap: https://resonant-genie-c13bf1.netlify.app/sitemap.xml

@@ -1,11 +1,7 @@
 <template>
-  <div class="flex min-h-screen flex-col">
-    <TheHeader />
-
-    <main class="container-fluid flex-1 py-8">
+  <div class="flex min-h-dvh flex-col">
+    <main class="flex-1">
       <slot />
     </main>
-
-    <TheFooter />
   </div>
 </template>

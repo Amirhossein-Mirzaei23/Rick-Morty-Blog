@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+.output/
+.nuxt/
+dist/
+
+# Dev / tooling
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+
+# Logs & temp
+*.log
+npm-debug.log*
+.DS_Store
+*.local
+
+# Docs & config not needed at runtime
+README.md
+*.md
+CHANGELOG*
+
+# Test artefacts
+coverage/
+.nyc_output/
