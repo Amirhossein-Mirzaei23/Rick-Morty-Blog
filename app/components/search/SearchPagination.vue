@@ -33,7 +33,7 @@ const visiblePages = computed<(number | '...')[]>(() => {
   if (mid - 1 > 2) pages.push('...')
   pages.push(mid - 1, mid, mid + 1)
   if (mid + 1 < totalPages - 1) pages.push('...')
-  pages.push(totalPages)
+  if (currentPage > 1) pages.push(totalPages)
 
   return pages
 })
