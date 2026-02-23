@@ -25,16 +25,10 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'Rick and Morty blog' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'robots', content: 'index, follow' },
       ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        {
-          rel: 'preload',
-          as: 'font',
-          type: 'font/ttf',
-          href: '/fonts/Rubik-VariableFont_wght.ttf',
-        },
-      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
@@ -49,7 +43,6 @@ export default defineNuxtConfig({
         output: {
           manualChunks: {
             'vue-vendor': ['vue', 'vue-router'],
-            'pinia-vendor': ['pinia'],
           },
         },
       },
@@ -86,6 +79,7 @@ export default defineNuxtConfig({
         headers: {
           'Content-Security-Policy': [
             "default-src 'self'",
+            "connect-src 'self' https://rickandmortyapi.com",
             "img-src 'self' https://rickandmortyapi.com data:",
             "font-src 'self' data:",
             "script-src 'self' 'unsafe-inline'", // Nuxt hydration
@@ -94,11 +88,15 @@ export default defineNuxtConfig({
             "base-uri 'self'",
             "frame-ancestors 'none'",
           ].join('; '),
-
           'X-Frame-Options': 'DENY',
           'X-Content-Type-Options': 'nosniff',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
           'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+        },
+      },
+      '/_nuxt/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
         },
       },
     },

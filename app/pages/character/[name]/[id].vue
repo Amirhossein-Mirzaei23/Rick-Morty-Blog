@@ -44,9 +44,11 @@ useSeoMeta({
     character.value
       ? `${character.value.name} is a ${character.value.status} ${character.value.species} from Rick and Morty. Origin: ${character.value.origin.name}. Appears in ${character.value.episode.length} episodes.`
       : '',
+  ogUrl: () => (character.value ? canonicalUrl.value : ''),
   ogImage: () => character.value?.image,
   ogImageAlt: () => (character.value ? `${character.value.name} - Rick and Morty blog image` : ''),
   ogType: 'profile',
+  robots: 'index, follow',
   twitterCard: 'summary_large_image',
   twitterTitle: () => (character.value ? `${character.value.name} - Rick and Morty blog` : ''),
   twitterDescription: () =>

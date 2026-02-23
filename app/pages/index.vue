@@ -23,23 +23,43 @@ function handleSearch(query: string) {
 function goToPage(page: number) {
   pushQuery({ page })
 }
+const config = useRuntimeConfig()
+
+const pageTitle = computed(() =>
+  searchQuery.value
+    ? `Results for "${searchQuery.value}" – Rick & Morty`
+    : 'Character Search – Rick & Morty',
+)
+const pageDescription = computed(() =>
+  searchQuery.value
+    ? `Browse Rick & Morty characters matching "${searchQuery.value}". Explore their status, species, and episode history.`
+    : 'Search and explore all Rick and Morty characters. Discover their origins, status, species, and episode appearances.',
+)
+
 useSeoMeta({
-  title: computed(() =>
-    searchQuery.value ? `Results for "${searchQuery.value}" – Rick & Morty` : 'Character Search – Rick & Morty',
+  title: pageTitle,
+  description: pageDescription,
+  ogTitle: pageTitle,
+  ogDescription: pageDescription,
+  ogUrl: computed(() => `${config.public.siteUrl}/`),
+  twitterCard: 'summary_large_image',
+  twitterTitle: pageTitle,
+  twitterDescription: computed(() =>
+    searchQuery.value
+      ? `Browse Rick & Morty characters matching "${searchQuery.value}".`
+      : 'Search and explore all Rick and Morty characters.',
   ),
-  description: 'Search for Rick and Morty characters by name.',
-  ogTitle: computed(() =>
-    searchQuery.value ? `Results for "${searchQuery.value}" – Rick & Morty` : 'Character Search – Rick & Morty',
-  ),
+  // Prevent search-result pages (?name=...) from being indexed to avoid duplicate content
+  robots: computed(() => (searchQuery.value ? 'noindex, follow' : 'index, follow')),
 })
 
 useHeadSafe({
-  link: [
+  link: computed(() => [
     {
       rel: 'canonical',
-      href: `https://yourdomain.com/character/search`,
+      href: `${config.public.siteUrl}/`,
     },
-  ],
+  ]),
 })
 </script>
 
