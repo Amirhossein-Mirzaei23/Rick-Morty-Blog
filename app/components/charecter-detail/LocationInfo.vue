@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import locationsIcon from '@/assets/icons/location_on.svg'
-import type { LocationDetail } from '~/types/charecter.type'
+import type { CharacterLocation } from '~/types/charecter.type'
 import LocationCard from './ui/CharacterInfoCard.vue'
 import SectionHeader from './ui/SectionHeader.vue'
 
 interface Props {
-  location: LocationDetail | null
+  location: CharacterLocation | null
   loading?: boolean
 }
 
