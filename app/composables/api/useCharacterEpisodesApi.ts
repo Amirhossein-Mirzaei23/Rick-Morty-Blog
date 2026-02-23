@@ -5,7 +5,7 @@ export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<
   const { handleApiError } = useApiErrorHandler()
 
   const episodesUrl = computed(() =>
-    episodeIds.value.length > 0 ? `/episode/${episodeIds.value.join(',')}` : '',
+    episodeIds.value?.length > 0 ? `/episode/${episodeIds.value.join(',')}` : null,
   )
 
   const {
@@ -18,7 +18,6 @@ export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<
     lazy: true,
     server: false,
     default: () => [] as Episode[],
-    // Handle errors gracefully - return empty array instead of crashing
     onResponseError({ error }) {
       handleApiError(error, { fallback: [] })
     },

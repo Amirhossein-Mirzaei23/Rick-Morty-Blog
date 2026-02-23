@@ -26,7 +26,7 @@ const episodeIds = computed(
   () =>
     character.value?.episode.map((url) => url.match(/\/episode\/(\d+)/)?.[1]).filter((id): id is string => !!id) ?? [],
 )
-const locationId = computed(() => character.value?.location.url.match(/\/location\/(\d+)/)?.[1] ?? null)
+const locationId = computed(() => character.value?.location.url.match(/\/location\/(\d+)/)?.[1] ?? '')
 
 const { episodes, episodesStatus } = useCharacterEpisodesApi(episodeIds)
 const { location, locationStatus } = useCharacterLocationApi(locationId)
