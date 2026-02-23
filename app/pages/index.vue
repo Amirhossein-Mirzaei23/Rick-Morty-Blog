@@ -10,6 +10,10 @@ const { characters, totalPages, error, isLoading, hasError, isEmpty, refresh } =
   name: searchQuery,
   page: currentPage,
 })
+const clearAndRefresh = () => {
+  clearNuxtData(`character-search-${searchQuery.value}-${currentPage.value}`)
+  refresh()
+}
 
 function pushQuery(params: Record<string, string | number>) {
   router.push({ query: { ...route.query, ...params } })
@@ -26,9 +30,7 @@ function goToPage(page: number) {
 const config = useRuntimeConfig()
 
 const pageTitle = computed(() =>
-  searchQuery.value
-    ? `Results for "${searchQuery.value}" – Rick & Morty`
-    : 'Character Search – Rick & Morty',
+  searchQuery.value ? `Results for "${searchQuery.value}" – Rick & Morty` : 'Character Search – Rick & Morty',
 )
 const pageDescription = computed(() =>
   searchQuery.value
@@ -67,7 +69,7 @@ useHeadSafe({
   <div class="flex-1">
     <SearchBar v-model="inputValue" :loading="isLoading" @search="handleSearch" />
     <main class="container-fluid">
-      <LazySearchErrorState v-if="hasError" :error="error" @retry="refresh" />
+      <LazySearchErrorState v-if="hasError" :error="error" @retry="clearAndRefresh" />
       <LazySearchEmptyState v-else-if="isEmpty" :search-query="searchQuery" />
       <LazySearchIdleState v-else-if="!searchQuery && !isLoading" />
       <div v-else class="flex flex-col gap-6 py-8">
