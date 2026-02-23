@@ -90,7 +90,6 @@ export default defineNuxtConfig({
     typedPages: true,
     inlineSSRStyles: false,
   },
-
   nitro: {
     preset: 'netlify',
     compressPublicAssets: true,
