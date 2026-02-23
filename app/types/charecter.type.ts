@@ -16,7 +16,7 @@ export interface Episode {
   created: string
 }
 
-export interface LocationDetail {
+export interface CharacterLocation {
   id: number
   name: string
   type: string

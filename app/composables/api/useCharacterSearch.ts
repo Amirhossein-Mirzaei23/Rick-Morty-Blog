@@ -6,11 +6,12 @@ interface UseCharacterSearchOptions {
 }
 
 export function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
+  const config = useRuntimeConfig()
   const apiUrl = computed(() => {
     const q = name.value.trim()
     if (!q) return null
     const params = new URLSearchParams({ name: q, page: String(page.value) })
-    return `https://rickandmortyapi.com/api/character/?${params.toString()}`
+    return `${config.public.apiBase}/character/?${params.toString()}`
   })
 
   const { data, status, error, refresh } = useAsyncData<characterSearchResponse | null>(

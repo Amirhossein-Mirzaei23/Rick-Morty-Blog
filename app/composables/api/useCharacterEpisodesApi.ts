@@ -1,9 +1,10 @@
 import type { Episode } from '~/types/charecter.type'
 
 export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<string[]>) {
+  const config = useRuntimeConfig()
   const episodesUrl = computed(() =>
     episodeIds.value.length > 0
-      ? `https://rickandmortyapi.com/api/episode/${episodeIds.value.join(',')}`
+      ? `/episode/${episodeIds.value.join(',')}`
       : '',
   )
   const {
@@ -11,6 +12,7 @@ export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<
     status: episodesStatus,
     error: episodesError,
   } = useFetch<Episode | Episode[]>(episodesUrl.value, {
+    baseURL: config.public.apiBase,
     retry: 2,
     lazy: true,
     server: false,

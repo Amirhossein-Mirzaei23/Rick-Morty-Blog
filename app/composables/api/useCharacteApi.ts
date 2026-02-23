@@ -1,9 +1,11 @@
 import type { Character } from '~/types/charecter.type'
 
 export async function useCharacteApi(characterId: Ref<string> | ComputedRef<string>) {
+  const config = useRuntimeConfig()
   const { data: character, error: characterError } = await useFetch<Character>(
-    `https://rickandmortyapi.com/api/character/${characterId.value}`,
+    `/character/${characterId.value}`,
     {
+      baseURL: config.public.apiBase,
       retry: 2,
       retryDelay: 500,
       key: `character-${characterId.value}`,

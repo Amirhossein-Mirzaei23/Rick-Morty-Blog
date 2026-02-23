@@ -63,7 +63,6 @@ export default defineNuxtConfig({
 
   imports: {
     dirs: ['composables/**'],
-    // , 'stores/**', 'utils/**'
   },
 
   components: [
@@ -97,7 +96,7 @@ export default defineNuxtConfig({
     apiSecret: process.env.NUXT_API_SECRET ?? '',
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? '/api',
-      appName: 'Nuxt 4 App',
+      appName: 'Rick and Morty blog',
       appVersion: '1.0.0',
     },
   },
