@@ -1,2 +1,2 @@
 User-Agent: *
-Sitemap: https://incomparable-bombolone-428fb9.netlify.app/sitemap.xml
+Sitemap: https://resonant-genie-c13bf1.netlify.app/sitemap.xml

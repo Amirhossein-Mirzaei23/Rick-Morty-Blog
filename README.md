@@ -2,7 +2,7 @@
 
 A modern, server-side rendered web application for exploring characters, episodes, and locations from the Rick and Morty universe. Built with Nuxt 4, Vue 3, TypeScript, and Tailwind CSS v4.
 
-🚀 **Live Demo:** [https://incomparable-bombolone-428fb9.netlify.app/](https://incomparable-bombolone-428fb9.netlify.app/)
+🚀 **Live Demo:** [https://resonant-genie-c13bf1.netlify.app/](https://resonant-genie-c13bf1.netlify.app/)
 
 ---
 
@@ -161,7 +161,7 @@ Netlify build config ([netlify.toml](netlify.toml)):
 
 Every push to the main branch triggers an automatic deploy.
 
-🌐 **Production URL:** [https://incomparable-bombolone-428fb9.netlify.app/](https://incomparable-bombolone-428fb9.netlify.app/)
+🌐 **Production URL:** [https://resonant-genie-c13bf1.netlify.app/](https://resonant-genie-c13bf1.netlify.app/)
 
 ---
 

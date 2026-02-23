@@ -134,8 +134,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     enabled: true,
-    hostname:
-      process.env.NUXT_PUBLIC_SITE_URL ?? 'https://incomparable-bombolone-428fb9.netlify.app',
+    hostname: process.env.NUXT_PUBLIC_SITE_URL ?? 'https://resonant-genie-c13bf1.netlify.app',
     gzip: true,
     exclude: [
       // Exclude any admin or internal routes if you have them
@@ -154,8 +153,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? 'https://rickandmortyapi.com/api',
-      siteUrl:
-        process.env.NUXT_PUBLIC_SITE_URL ?? 'https://incomparable-bombolone-428fb9.netlify.app',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'https://resonant-genie-c13bf1.netlify.app',
       appName: 'Rick and Morty blog',
       appVersion: '1.0.0',
     },
