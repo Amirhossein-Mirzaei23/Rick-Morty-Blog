@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Character } from '~/types/charecter.type'
+import type { Character } from '~/types/character.type'
 defineProps<{ character: Character }>()
 
 const imageLoading = ref<boolean>(true)

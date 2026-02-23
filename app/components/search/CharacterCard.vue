@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Character, CharacterStatus } from '~/types/charecter.type'
+import type { Character, CharacterStatus } from '~/types/character.type'
 const { character } = defineProps<{ character: Character }>()
 const router = useRouter()
 

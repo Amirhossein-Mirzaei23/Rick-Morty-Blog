@@ -1,4 +1,4 @@
-import type { characterSearchResponse } from '~/types/charecter.type'
+import type { characterSearchResponse } from '~/types/character.type'
 
 interface UseCharacterSearchOptions {
   name: Ref<string> | ComputedRef<string>
@@ -7,6 +7,8 @@ interface UseCharacterSearchOptions {
 
 export function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
   const config = useRuntimeConfig()
+  const { handleApiError } = useApiErrorHandler()
+  
   const apiUrl = computed(() => {
     const q = name.value.trim()
     if (!q) return null
@@ -21,7 +23,10 @@ export function useCharacterSearch({ name, page }: UseCharacterSearchOptions) {
       if (!url) return null
 
       return $fetch<characterSearchResponse>(url).catch((err) => {
-        if (err?.status === 404 || err?.statusCode === 404) return null
+        // Use error handler: return null for 404 (no results), throw everything else
+        if (err?.status === 404 || err?.statusCode === 404) {
+          return handleApiError(err, { fallback: null })
+        }
         throw err
       })
     },

@@ -76,7 +76,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    // preset: 'netlify',
     compressPublicAssets: true,
     prerender: {
       autoSubfolderIndex: false,
@@ -95,6 +95,7 @@ export default defineNuxtConfig({
     apiSecret: process.env.NUXT_API_SECRET ?? '',
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? 'https://rickandmortyapi.com/api',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
       appName: 'Rick and Morty blog',
       appVersion: '1.0.0',
     },

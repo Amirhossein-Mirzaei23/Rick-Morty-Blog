@@ -1,12 +1,13 @@
-import type { Episode } from '~/types/charecter.type'
+import type { Episode } from '~/types/character.type'
 
 export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<string[]>) {
   const config = useRuntimeConfig()
+  const { handleApiError } = useApiErrorHandler()
+  
   const episodesUrl = computed(() =>
-    episodeIds.value.length > 0
-      ? `/episode/${episodeIds.value.join(',')}`
-      : '',
+    episodeIds.value.length > 0 ? `/episode/${episodeIds.value.join(',')}` : '',
   )
+  
   const {
     data: episodesData,
     status: episodesStatus,
@@ -17,7 +18,12 @@ export function useCharacterEpisodesApi(episodeIds: Ref<string[]> | ComputedRef<
     lazy: true,
     server: false,
     default: () => [] as Episode[],
+    // Handle errors gracefully - return empty array instead of crashing
+    onResponseError({ error }) {
+      handleApiError(error, { fallback: [] })
+    },
   })
+  
   const episodes = computed<Episode[]>(() => {
     const val = episodesData.value
     if (!val) return []

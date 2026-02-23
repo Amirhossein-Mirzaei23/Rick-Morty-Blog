@@ -1,7 +1,8 @@
-import type { Character } from '~/types/charecter.type'
+import type { Character } from '~/types/character.type'
 import { slugify } from '~/utils/seo.utility'
 
 export function useCharacterJsonLd(character: Ref<Character | undefined>, characterId: string) {
+  const config = useRuntimeConfig()
   const genderMap: Record<string, string> = {
     Male: 'Male',
     Female: 'Female',
@@ -10,7 +11,8 @@ export function useCharacterJsonLd(character: Ref<Character | undefined>, charac
   }
 
   const canonicalUrl = computed(
-    () => `https://yourdomain.com/character/${slugify(character.value?.name ?? '')}/${characterId}`,
+    () =>
+      `${config.public.siteUrl}/character/${slugify(character.value?.name ?? '')}/${characterId}`,
   )
 
   const jsonLd = computed(() => {
@@ -69,13 +71,13 @@ export function useCharacterJsonLd(character: Ref<Character | undefined>, charac
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://yourdomain.com/',
+          item: config.public.siteUrl,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Search',
-          item: 'https://yourdomain.com/search',
+          item: `${config.public.siteUrl}/search`,
         },
         {
           '@type': 'ListItem',

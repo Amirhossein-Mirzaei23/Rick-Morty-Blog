@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import episodesIcon from '@/assets/icons/featured_play_list.svg'
-import type { Episode } from '~/types/charecter.type'
+import type { Episode } from '~/types/character.type'
 import SectionHeader from './ui/SectionHeader.vue'
 import EpisodeCard from './ui/CharacterInfoCard.vue'
 interface Props {

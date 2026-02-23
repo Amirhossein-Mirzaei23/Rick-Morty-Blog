@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import locationsIcon from '@/assets/icons/location_on.svg'
-import type { CharacterLocation } from '~/types/charecter.type'
+import type { CharacterLocation } from '~/types/character.type'
 import LocationCard from './ui/CharacterInfoCard.vue'
 import SectionHeader from './ui/SectionHeader.vue'
 

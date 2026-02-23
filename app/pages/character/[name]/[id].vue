@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useCharacterEpisodesApi } from '~/composables/api/useCharacterEpisodesApi'
-import { useCharacterLocationApi } from '~/composables/api/useCharactorLocationApi'
+import { useCharacterLocationApi } from '~/composables/api/useCharacterLocationApi'
 import { useCharacterJsonLd } from '~/composables/useCharacterJsonLd'
-import { useCharacteApi } from '~/composables/api/useCharacteApi'
+import { useCharacterApi } from '~/composables/api/useCharacterApi'
 
 definePageMeta({
   layout: 'default',
@@ -20,7 +20,7 @@ const characterId = computed(() => {
   const { id } = route.params as { id?: string | string[] }
   return Array.isArray(id) ? (id[0] ?? '') : (id ?? '')
 })
-const { character } = await useCharacteApi(characterId)
+const { character } = await useCharacterApi(characterId)
 
 const episodeIds = computed(
   () =>
@@ -86,7 +86,7 @@ useHead({
           />
         </template>
         <template #fallback>
-          <div class="animate-skeleton h-64 rounded-2xl bg-[#404244]"></div>
+          <div class="animate-skeleton h-64 rounded-2xl bg-neutral-700"></div>
         </template>
       </Suspense>
       <Suspense>
@@ -94,7 +94,7 @@ useHead({
           <LazyLocationInfo hydrate-on-visible :location="location ?? null" :loading="locationStatus === 'pending'" />
         </template>
         <template #fallback>
-          <div class="animate-skeleton h-32 rounded-2xl bg-[#404244]"></div>
+          <div class="animate-skeleton h-32 rounded-2xl bg-neutral-700"></div>
         </template>
       </Suspense>
     </div>

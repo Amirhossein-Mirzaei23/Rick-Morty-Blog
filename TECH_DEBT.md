@@ -18,3 +18,4 @@
 - **Proposed Fix:**
   - Use a contrast checker tool (e.g. [WebAIM](https://webaim.org/resources/contrastchecker/))
   - Update text or background color to meet proper contrast ratio
+    ////////////////////////////////////////////////////////////////////////////
