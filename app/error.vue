@@ -14,7 +14,7 @@ useSeoMeta({
   description: 'An error occurred while processing your request.',
 })
 
-const handleError = () => clearError({ redirect: '/search' })
+const handleError = () => clearError({ redirect: '/' })
 </script>
 
 <template>
