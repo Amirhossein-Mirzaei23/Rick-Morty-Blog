@@ -16,7 +16,7 @@ const emit = defineEmits<{
 
 <template>
   <div class="flex flex-col items-center gap-3 py-20 text-center" role="alert">
-    <img :width="48" :height="48" :src="errorIcon" alt="error" />
+    <img :width="48" :height="48" :src="errorIcon" alt="" aria-hidden="true" role="presentation" />
     <p class="text-danger text-3xl leading-none font-medium">{{ statusCode }}</p>
     <div>
       <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Something went wrong</h2>

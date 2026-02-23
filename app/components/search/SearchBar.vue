@@ -67,7 +67,7 @@ watch(model, (value) => {
           aria-label="Search"
           @click="handleSearch"
         >
-          <img :src="searchIcon" :width="14" :height="14" alt="search icon" />
+          <img :src="searchIcon" :width="14" :height="14" alt="" aria-hidden="true" />
           <span class="hidden lg:inline">Search</span>
         </button>
       </div>
