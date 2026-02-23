@@ -1,4 +1,4 @@
-import type { characterSearchResponse } from '~/types/character.type'
+import type { CharacterSearchResponse } from '~/types/character.type'
 
 interface UseCharacterSearchOptions {
   name: Ref<string> | ComputedRef<string>
@@ -16,13 +16,13 @@ export async function useCharacterSearch({ name, page }: UseCharacterSearchOptio
     return `${config.public.apiBase}/character/?${params.toString()}`
   })
 
-  const { data, status, error, refresh } = await useAsyncData<characterSearchResponse | null>(
+  const { data, status, error, refresh } = await useAsyncData<CharacterSearchResponse | null>(
     'character-search',
     async () => {
       const url = apiUrl.value
       if (!url) return null
 
-      return $fetch<characterSearchResponse>(url).catch((err) => {
+      return $fetch<CharacterSearchResponse>(url).catch((err) => {
         // Use error handler: return null for 404 (no results), throw everything else
         if (err?.status === 404 || err?.statusCode === 404) {
           return handleApiError(err, { fallback: null })
