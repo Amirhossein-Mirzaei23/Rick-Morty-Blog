@@ -94,7 +94,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: process.env.NUXT_API_SECRET ?? '',
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE ?? '/api',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE ?? 'https://rickandmortyapi.com/api',
       appName: 'Rick and Morty blog',
       appVersion: '1.0.0',
     },

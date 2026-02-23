@@ -19,7 +19,10 @@ logs
 .fleet
 .idea
 
+# .env file pushing to git beacuse it has no secrets, just public variables,
+# but if you have secrets in .env file, you should add it to .gitignore and create a .env.example file with the same variables but with dummy values, and push it to git,
+# so other developers can see what variables they need to create in their own .env file.
 # Local env files
-.env
-.env.*
-!.env.example
+# .env
+# .env.*
+# !.env.example
