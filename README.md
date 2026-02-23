@@ -192,6 +192,7 @@ This project consumes the free [Rick and Morty API](https://rickandmortyapi.com/
 | `npm run lint:fix`     | Lint and auto-fix          |
 | `npm run format`       | Format with Prettier       |
 | `npm run format:check` | Check Prettier formatting  |
+| `npm run analyze`      | Run Nuxt boundle analyzer  |
 
 ---
 

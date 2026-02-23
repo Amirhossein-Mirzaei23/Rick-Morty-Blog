@@ -12,7 +12,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "_comment_analyze": "Builds and analyzes production bundle - Opens interactive visualization showing bundle size, chunks, modules, and dependencies. Helps identify large dependencies and optimization opportunities. Output: .nuxt/analyze/ directory with stats.html",
+    "analyze": "nuxt analyze"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.3",
