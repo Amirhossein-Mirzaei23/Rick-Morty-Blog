@@ -59,7 +59,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@pinia/nuxt', '@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sitemap'],
 
   imports: {
     dirs: ['composables/**'],
@@ -84,7 +84,6 @@ export default defineNuxtConfig({
     routeRules: {
       '/**': {
         headers: {
-          // ✅ Content Security Policy
           'Content-Security-Policy': [
             "default-src 'self'",
             "img-src 'self' https://rickandmortyapi.com data:",
@@ -96,7 +95,6 @@ export default defineNuxtConfig({
             "frame-ancestors 'none'",
           ].join('; '),
 
-          // ✅ Additional Security Headers
           'X-Frame-Options': 'DENY',
           'X-Content-Type-Options': 'nosniff',
           'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -114,11 +112,31 @@ export default defineNuxtConfig({
     },
   },
 
+  sitemap: {
+    enabled: true,
+    hostname:
+      process.env.NUXT_PUBLIC_SITE_URL ?? 'https://incomparable-bombolone-428fb9.netlify.app',
+    gzip: true,
+    exclude: [
+      // Exclude any admin or internal routes if you have them
+    ],
+    sources: [
+      // Fetch dynamic character URLs from our API endpoint
+      '/api/sitemap-urls',
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.5,
+      lastmod: new Date().toISOString(),
+    },
+  },
+
   runtimeConfig: {
     apiSecret: process.env.NUXT_API_SECRET ?? '',
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? 'https://rickandmortyapi.com/api',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+      siteUrl:
+        process.env.NUXT_PUBLIC_SITE_URL ?? 'https://incomparable-bombolone-428fb9.netlify.app',
       appName: 'Rick and Morty blog',
       appVersion: '1.0.0',
     },
