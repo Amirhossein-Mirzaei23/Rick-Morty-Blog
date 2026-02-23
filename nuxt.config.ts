@@ -81,6 +81,29 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false,
     },
+    routeRules: {
+      '/**': {
+        headers: {
+          // ✅ Content Security Policy
+          'Content-Security-Policy': [
+            "default-src 'self'",
+            "img-src 'self' https://rickandmortyapi.com data:",
+            "font-src 'self' data:",
+            "script-src 'self' 'unsafe-inline'", // Nuxt hydration
+            "style-src 'self' 'unsafe-inline'",
+            "object-src 'none'",
+            "base-uri 'self'",
+            "frame-ancestors 'none'",
+          ].join('; '),
+
+          // ✅ Additional Security Headers
+          'X-Frame-Options': 'DENY',
+          'X-Content-Type-Options': 'nosniff',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+        },
+      },
+    },
     typescript: {
       strict: true,
       tsConfig: {
