@@ -31,7 +31,6 @@ A modern, server-side rendered web application for exploring characters, episode
 | UI Library       | [Vue 3](https://vuejs.org) (Composition API)           |
 | Language         | TypeScript (strict mode)                               |
 | Styling          | [Tailwind CSS v4](https://tailwindcss.com)             |
-| State Management | [Pinia](https://pinia.vuejs.org)                       |
 | API              | [Rick and Morty REST API](https://rickandmortyapi.com) |
 | Deployment       | [Netlify](https://netlify.com)                         |
 | Linting          | ESLint v9 (flat config) + Prettier                     |
