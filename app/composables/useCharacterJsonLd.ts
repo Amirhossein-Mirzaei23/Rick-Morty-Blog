@@ -62,33 +62,7 @@ export function useCharacterJsonLd(character: Ref<Character | undefined>, charac
         },
       ],
     }
-
-    const breadcrumbSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: config.public.siteUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Search',
-          item: `${config.public.siteUrl}/search`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: char.name,
-          item: canonicalUrl.value,
-        },
-      ],
-    }
-
-    return [personSchema, breadcrumbSchema]
+    return [personSchema]
   })
 
   return {
