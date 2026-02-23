@@ -65,11 +65,11 @@ export default defineNuxtConfig({
 
   experimental: {
     typedPages: true,
-    inlineSSRStyles: true,
+    inlineSSRStyles: false,
   },
 
   nitro: {
-    // preset: 'netlify',
+    preset: 'netlify',
     compressPublicAssets: true,
     prerender: {
       autoSubfolderIndex: false,
@@ -130,7 +130,6 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    apiSecret: process.env.NUXT_API_SECRET ?? '',
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE ?? 'https://rickandmortyapi.com/api',
       siteUrl:
