@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="flex items-center gap-3">
-    <img :src="image" :alt="alt" />
+    <NuxtImg :src="image" :alt="alt" />
     <h2 class="text-2xl leading-none font-medium text-white">{{ title }}</h2>
   </div>
 </template>

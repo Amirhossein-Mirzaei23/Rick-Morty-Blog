@@ -20,13 +20,14 @@ const statusConfig: Record<CharacterStatus, { label: string; dot: string }> = {
 const status = computed(() => statusConfig[character.status] ?? statusConfig.unknown)
 
 const imageLoading = ref(true)
-const imgRef = ref<HTMLImageElement>()
+
+const imgRef = ref<{ $el: HTMLImageElement } | null>(null)
 const setImageLoading = (loading: boolean) => {
   imageLoading.value = loading
 }
 
 onMounted(() => {
-  if (imgRef.value?.complete) {
+  if (imgRef.value?.$el?.complete) {
     setImageLoading(false)
   }
 })
@@ -41,17 +42,20 @@ onMounted(() => {
     >
       <div class="relative aspect-square overflow-hidden rounded-xl">
         <div v-if="imageLoading" class="animate-skeleton absolute inset-0" aria-hidden="true" />
-        <img
+        <NuxtImg
+          ref="imgRef"
           :src="character.image"
           :alt="character.name"
-          loading="lazy"
-          class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-          :class="imageLoading ? 'opacity-100' : 'opacity-0'"
           width="300"
           height="300"
-          ref="imgRef"
+          sizes="xs:45vw sm:45vw md:30vw lg:280px"
+          densities="1 2"
+          loading="lazy"
+          class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          :class="imageLoading ? 'opacity-0' : 'opacity-100'"
           @load="setImageLoading(false)"
         />
+        <!-- preset="character" -->
       </div>
       <div class="flex flex-1 flex-col gap-3">
         <h2 class="truncate text-base font-semibold dark:text-white">

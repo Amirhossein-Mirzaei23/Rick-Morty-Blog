@@ -3,13 +3,14 @@ import type { Character } from '~/types/character.type'
 defineProps<{ character: Character }>()
 
 const imageLoading = ref<boolean>(true)
-const imgRef = ref<HTMLImageElement>()
+
+const imgRef = ref<{ $el: HTMLImageElement } | null>(null)
 const setImageLoading = (loading: boolean) => {
   imageLoading.value = loading
 }
 
 onMounted(() => {
-  if (imgRef.value?.complete) {
+  if (imgRef.value?.$el?.complete) {
     setImageLoading(false)
   }
 })
@@ -29,13 +30,15 @@ onMounted(() => {
     <div class="relative z-10 mx-auto mt-15 flex flex-col gap-4 p-4 lg:flex-row lg:items-center lg:gap-12">
       <div class="relative aspect-square h-45 w-45 overflow-hidden rounded-md lg:h-60 lg:w-60">
         <div v-if="imageLoading" class="animate-skeleton absolute inset-0" aria-hidden="true" />
-        <img
+        <NuxtImg
           ref="imgRef"
           :src="character.image"
-          fetchpriority="high"
           :alt="character.name"
-          :width="180"
-          :height="180"
+          width="240"
+          height="240"
+          sizes="xs:180px lg:240px"
+          densities="1 2"
+          fetchpriority="high"
           class="h-45 w-45 rounded-md object-cover lg:h-60 lg:w-60"
           @load="setImageLoading(false)"
         />
