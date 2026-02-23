@@ -52,7 +52,30 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint', '@nuxtjs/sitemap'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sitemap', '@nuxt/image', '@nuxt/test-utils/module'],
+
+  image: {
+    provider: process.env.NETLIFY ? 'netlify' : 'none',
+    domains: ['rickandmortyapi.com'],
+    quality: 80,
+    presets: {
+      character: {
+        modifiers: {
+          format: 'webp',
+          quality: 80,
+          fit: 'cover',
+        },
+      },
+    },
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+    },
+  },
 
   imports: {
     dirs: ['composables/**'],
