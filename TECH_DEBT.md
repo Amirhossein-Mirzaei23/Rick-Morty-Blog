@@ -17,9 +17,4 @@
   3. Run Lighthouse and check accebilty section issues
 - **Proposed Fix:**
   - Use a contrast checker tool (e.g. [WebAIM](https://webaim.org/resources/contrastchecker/))
-  - Update text or background color to meet **4.5:1** contrast ratio
-  - Consider using CSS variables for consistent theming
-- **Effort:** Low (1-2 hours)
-- **Priority:** High
-- **Owner:** Unassigned
-- **Date Added:** 2026-02-23
+  - Update text or background color to meet proper contrast ratio
