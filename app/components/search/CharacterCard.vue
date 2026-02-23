@@ -1,23 +1,6 @@
 <script setup lang="ts">
 import type { Character, CharacterStatus } from '~/types/character.type'
 const { character } = defineProps<{ character: Character }>()
-const router = useRouter()
-
-function navigate() {
-  const slug = slugify(character.name)
-  router.push({
-    path: `/character/${slug}/${character.id}`,
-    query: { id: character.id },
-  })
-}
-
-function handleKeydown(e: KeyboardEvent) {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault()
-    navigate()
-  }
-}
-
 const statusConfig: Record<CharacterStatus, { label: string; dot: string }> = {
   Alive: {
     label: 'Alive',
@@ -36,7 +19,7 @@ const statusConfig: Record<CharacterStatus, { label: string; dot: string }> = {
 
 const status = computed(() => statusConfig[character.status] ?? statusConfig.unknown)
 
-const imageLoading = ref(false)
+const imageLoading = ref(true)
 const imgRef = ref<HTMLImageElement>()
 const setImageLoading = (loading: boolean) => {
   imageLoading.value = loading
@@ -53,14 +36,11 @@ onMounted(() => {
   <NuxtLink :to="`/character/${slugify(character.name)}/${character.id}`">
     <article
       class="group flex cursor-pointer flex-col gap-4 overflow-hidden rounded-2xl border border-[#404244] p-4"
-      tabindex="0"
       :aria-label="`View details for ${character.name}`"
       role="button"
-      @click="navigate"
-      @keydown="handleKeydown"
     >
       <div class="relative aspect-square overflow-hidden rounded-xl">
-        <div v-if="!imageLoading" class="animate-skeleton absolute inset-0" aria-hidden="true" />
+        <div v-if="imageLoading" class="animate-skeleton absolute inset-0" aria-hidden="true" />
         <img
           :src="character.image"
           :alt="character.name"
@@ -70,7 +50,7 @@ onMounted(() => {
           width="300"
           height="300"
           ref="imgRef"
-          @load="imageLoading = true"
+          @load="setImageLoading(false)"
         />
       </div>
       <div class="flex flex-1 flex-col gap-3">

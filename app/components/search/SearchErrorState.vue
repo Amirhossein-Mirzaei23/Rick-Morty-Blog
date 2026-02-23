@@ -5,6 +5,9 @@ import errorIcon from '@/assets/icons/triangle-error.svg'
 const props = defineProps<{
   error: NuxtError | undefined
 }>()
+const statusCode = ref(
+  props.error?.message.includes('no response') ? 429 : (props.error?.status ?? props.error?.statusCode ?? 500),
+)
 
 const emit = defineEmits<{
   retry: []
@@ -14,12 +17,14 @@ const emit = defineEmits<{
 <template>
   <div class="flex flex-col items-center gap-3 py-20 text-center" role="alert">
     <img :width="48" :height="48" :src="errorIcon" alt="error" />
-    <p>{{ props.error?.statusCode }} - {{ props.error?.status }}</p>
-    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Something went wrong</h2>
-    <p class="text-sm text-gray-500 dark:text-gray-400">Failed to fetch characters. Please try again.</p>
+    <p class="text-danger text-3xl leading-none font-medium">{{ statusCode }}</p>
+    <div>
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Something went wrong</h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400">Failed to fetch characters. Please try again.</p>
+    </div>
     <button
       type="button"
-      class="bg-primary-600 hover:bg-primary-700 mt-2 rounded-lg px-5 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-800"
+      class="bg-accent mt-4 cursor-pointer rounded-sm px-6 py-3 font-semibold text-[#00333D] hover:opacity-90"
       @click="emit('retry')"
     >
       Retry
