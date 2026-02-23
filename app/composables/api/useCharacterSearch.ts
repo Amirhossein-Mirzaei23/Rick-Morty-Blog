@@ -17,13 +17,12 @@ export async function useCharacterSearch({ name, page }: UseCharacterSearchOptio
   })
 
   const { data, status, error, refresh } = await useAsyncData<CharacterSearchResponse | null>(
-    'character-search',
+    `character-search-${name.value}-${page.value}`,
     async () => {
       const url = apiUrl.value
       if (!url) return null
 
       return $fetch<CharacterSearchResponse>(url).catch((err) => {
-        // Use error handler: return null for 404 (no results), throw everything else
         if (err?.status === 404 || err?.statusCode === 404) {
           return handleApiError(err, { fallback: null })
         }
