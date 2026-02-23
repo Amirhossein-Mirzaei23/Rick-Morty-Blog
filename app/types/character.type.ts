@@ -1,7 +1,7 @@
 export type CharacterStatus = 'Alive' | 'Dead' | 'unknown'
 export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown'
 
-export interface location {
+export interface LocationRef {
   name: string
   url: string
 }
@@ -33,26 +33,22 @@ export interface Character {
   species: string
   type: string
   gender: CharacterGender
-  origin: location
-  location: location
+  origin: LocationRef
+  location: LocationRef
   image: string
   episode: string[]
   url: string
   created: string
 }
 
-export interface characterSearchPageInfo {
+export interface CharacterSearchPageInfo {
   count: number
   pages: number
   next: string | null
   prev: string | null
 }
 
-export interface characterSearchResponse {
-  info: characterSearchPageInfo
+export interface CharacterSearchResponse {
+  info: CharacterSearchPageInfo
   results: Character[]
-}
-
-export interface characterSearchApiError {
-  error: string
 }
