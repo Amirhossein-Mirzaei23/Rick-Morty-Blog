@@ -4,6 +4,10 @@ A modern, server-side rendered web application for exploring characters, episode
 
 🚀 **Live Demo:** [https://resonant-genie-c13bf1.netlify.app/](https://resonant-genie-c13bf1.netlify.app/)
 
+📊 PageSpeed Insights
+
+[🔍 View PageSpeed Report](https://pagespeed.web.dev/analysis/https-resonant-genie-c13bf1-netlify-app-character-rick-sanchez-1/b1wdgejv8m?form_factor=mobile)
+
 ---
 
 ## Features
