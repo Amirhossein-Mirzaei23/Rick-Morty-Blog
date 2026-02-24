@@ -3,7 +3,7 @@
 # ──────────────────────────────────────────────────────────
 # Stage 1 – Install dependencies (separate for cache reuse)
 # ──────────────────────────────────────────────────────────
-FROM node:22-alpine AS deps
+FROM node:20-alpine AS deps
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ RUN npm ci --no-audit --prefer-offline
 # ──────────────────────────────────────────────────────────
 # Stage 2 – Build the Nuxt application
 # ──────────────────────────────────────────────────────────
-FROM node:22-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -88,7 +88,7 @@ CMD ["angie", "-g", "daemon off;"]
 # For production with an Angie reverse-proxy in front,
 # use angie.ssr.conf in the proxy container / compose service.
 # ──────────────────────────────────────────────────────────
-FROM node:22-alpine AS app
+FROM node:20-alpine AS app
 
 # Non-root user for security
 RUN addgroup -g 1001 nuxt && adduser -u 1001 -G nuxt -s /bin/sh -D nuxt
